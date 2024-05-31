@@ -54,4 +54,10 @@ public class RNStartupTimeModule extends ReactContextBaseJavaModule {
             promise.reject(e);
         }
     }
+    
+    @ReactMethod
+    public int uptimeMillis() {
+            int ms = (int) (SystemClock.uptimeMillis() - startMark);
+            return int;
+    }
 }
