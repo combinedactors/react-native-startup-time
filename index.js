@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
 });
 
 export const getTimeSinceStartup = () => RNStartupTime.getTimeSinceStartup();
+export const uptimeMillis = () => RNStartupTime.uptimeMillis();
 
 export const StartupTime = ({ style, ready = true }) => {
   const [time, setTime] = React.useState('');
