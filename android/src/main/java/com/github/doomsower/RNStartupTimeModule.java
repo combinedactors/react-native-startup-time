@@ -56,8 +56,18 @@ public class RNStartupTimeModule extends ReactContextBaseJavaModule {
     }
     
     @ReactMethod
-    public int uptimeMillis() {
-            int ms = (int) (SystemClock.uptimeMillis());
-            return ms;
+    public void uptimeMillis(Promise promise) {
+        try {
+            int ms = (int) SystemClock.uptimeMillis();
+            Activity activity = getCurrentActivity();
+            if (activity != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                activity.reportFullyDrawn();
+            }
+            promise.resolve(ms);
+
+        } catch (Exception e) {
+            promise.reject(e);
+        }
+        
     }
 }
